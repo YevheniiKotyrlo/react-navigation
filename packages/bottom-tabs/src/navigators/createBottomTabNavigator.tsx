@@ -55,32 +55,6 @@ function BottomTabNavigator({
       router,
     });
 
-  const focusedRouteKey = state.routes[state.index].key;
-  const previousRouteKeyRef = React.useRef(focusedRouteKey);
-
-  React.useEffect(() => {
-    const previousRouteKey = previousRouteKeyRef.current;
-
-    if (
-      previousRouteKey !== focusedRouteKey &&
-      descriptors[previousRouteKey]?.options.popToTopOnBlur
-    ) {
-      const prevRoute = state.routes.find(
-        (route) => route.key === previousRouteKey
-      );
-
-      if (prevRoute?.state?.type === 'stack' && prevRoute.state.key) {
-        const popToTopAction = {
-          ...StackActions.popToTop(),
-          target: prevRoute.state.key,
-        };
-        navigation.dispatch(popToTopAction);
-      }
-    }
-
-    previousRouteKeyRef.current = focusedRouteKey;
-  }, [descriptors, focusedRouteKey, navigation, state.index, state.routes]);
-
   return (
     <NavigationContent>
       <BottomTabView

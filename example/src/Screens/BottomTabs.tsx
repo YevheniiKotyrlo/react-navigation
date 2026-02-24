@@ -41,6 +41,7 @@ import { Albums } from '../Shared/Albums';
 import { Chat } from '../Shared/Chat';
 import { Contacts } from '../Shared/Contacts';
 import { NativeStack, type NativeStackParamList } from './NativeStack';
+import { StackBasic } from './StackBasic';
 
 export type BottomTabParamList = {
   TabStack: NavigatorScreenParams<NativeStackParamList>;
@@ -199,7 +200,7 @@ export function BottomTabs(
       >
         <Tab.Screen
           name="TabStack"
-          component={NativeStack}
+          component={StackBasic}
           options={{
             popToTopOnBlur: true,
             title: 'Article',

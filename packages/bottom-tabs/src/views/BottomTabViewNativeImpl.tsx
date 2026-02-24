@@ -62,6 +62,13 @@ export function BottomTabViewNative({
   const { dark, colors, fonts } = useTheme();
 
   const focusedRouteKey = state.routes[state.index].key;
+
+  const [loaded, setLoaded] = React.useState([focusedRouteKey]);
+
+  if (!loaded.includes(focusedRouteKey)) {
+    setLoaded([...loaded, focusedRouteKey]);
+  }
+
   const previousRouteKeyRef = React.useRef(focusedRouteKey);
 
   React.useEffect(() => {
@@ -80,6 +87,7 @@ export function BottomTabViewNative({
           ...StackActions.popToTop(),
           target: prevRoute.state.key,
         };
+
         navigation.dispatch(popToTopAction);
       }
     }
